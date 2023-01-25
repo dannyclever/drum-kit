@@ -39,9 +39,8 @@ const removerEfeito = (letra) => {
                                             
 
 const ativarDiv = (evento) => {
-    //Pegar o id 
-    const letra = evento.target.id;
-    //Para tocar somente dentro de cada quadrado(div) com letras e nao em qualquer lugar clicado.
+    
+    const letra = evento.type == 'click' ? evento.target.id : evento.key.toUpperCase();
     const letraPermitida = sons.hasOwnProperty(letra);
     if (letraPermitida) {
         adicionarEfeito(letra);
@@ -50,5 +49,8 @@ const ativarDiv = (evento) => {
     }
 }
 
+
 exibir(sons);
 document.getElementById('container').addEventListener('click', ativarDiv);
+
+window.addEventListener('keydown', ativarDiv);
